@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bootme"
+version = "0.0.1"
+description = "AutoHotkey script installation manager"
+requires-python = ">=3.8"
+dependencies = [
+    "rich>=13.0.0",
+    "inquirer>=3.0.0",
+]
+
+[project.scripts]
+bootme = "bootme.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+bootme = ["autohotkeys/*.ahk"]

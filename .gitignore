@@ -1,3 +1,8 @@
 node_modules/
 .specstory/
 .cursorindexingignore
+
+# Python
+*.egg-info/
+__pycache__/
+*.pyc
