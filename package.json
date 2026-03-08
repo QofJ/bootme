@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "type": "module",
   "bin": {
-    "bootme": "./scripts/cli.js"
+    "bootme": "./lib/cli.js"
   },
   "dependencies": {
     "@inquirer/prompts": "^7.6.0"

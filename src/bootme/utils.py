@@ -14,11 +14,11 @@ def get_default_install_path() -> str:
     return str(Path.home() / "Documents" / "AutoHotkey")
 
 
-def get_autohotkeys_dir() -> Path:
+def get_autohotkeys_dir():
     """Get the autohotkeys source directory path.
 
     Returns:
-        Path: Path to autohotkeys directory
+        Traversable: Path to autohotkeys directory
     """
     # Use importlib.resources to access package data
-    return files("bootme").joinpath("autohotkeys")
+    return files("bootme.assets.autohotkeys")
