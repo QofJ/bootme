@@ -1,0 +1,13 @@
+{
+  "name": "@medizana/bootme",
+  "version": "0.0.1",
+  "type": "module",
+  "bin": {
+    "bootme": "./scripts/hello.js",
+    "autohotkey": "./scripts/autohotkey.js"
+  },
+  "dependencies": {
+    "@inquirer/prompts": "^7.6.0"
+  }
+}
+
