@@ -5,8 +5,14 @@
   "bin": {
     "bootme": "./lib/cli.js"
   },
+  "scripts": {
+    "sync-assets": "node scripts/sync-assets.js",
+    "prepare": "husky"
+  },
   "dependencies": {
     "@inquirer/prompts": "^7.6.0"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }
-
