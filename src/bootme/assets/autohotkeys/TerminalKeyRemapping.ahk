@@ -8,10 +8,10 @@ SetCapsLockState "AlwaysOff"
 
 #HotIf WinActive("ahk_group MyTerminals")
 
-CapsLock & h::Send("{Left}")
-CapsLock & j::Send("{Down}")
-CapsLock & k::Send("{Up}")
-CapsLock & l::Send("{Right}")
+CapsLock & h::Send("{Blind}{Left}")
+CapsLock & j::Send("{Blind}{Down}")
+CapsLock & k::Send("{Blind}{Up}")
+CapsLock & l::Send("{Blind}{Right}")
 
 #HotIf
 
