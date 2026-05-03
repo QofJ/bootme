@@ -10,6 +10,7 @@ requires-python = ">=3.8"
 dependencies = [
     "rich>=13.0.0",
     "inquirer>=3.0.0",
+    "psutil>=7.2.2",
 ]
 
 [project.scripts]
@@ -20,3 +21,8 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "bootme.assets.autohotkeys" = ["*.ahk"]
+
+[dependency-groups]
+dev = [
+    "ipython>=8.12.3",
+]
