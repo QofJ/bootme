@@ -21,6 +21,7 @@ where = ["src"]
 
 [tool.setuptools.package-data]
 "bootme.assets.autohotkeys" = ["*.ahk"]
+"bootme.assets.rime" = ["*.yaml"]
 
 [dependency-groups]
 dev = [

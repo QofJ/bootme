@@ -34,3 +34,23 @@ for (const file of files) {
 }
 
 console.log(`\n✅ Synced ${files.length} file(s) to ${targetDir}`);
+
+// --- Sync Rime .yaml files ---
+const rimeSourceDir = join(rootDir, 'assets', 'rime');
+const rimeTargetDir = join(rootDir, 'src', 'bootme', 'assets', 'rime');
+
+if (!existsSync(rimeTargetDir)) {
+  mkdirSync(rimeTargetDir, { recursive: true });
+}
+
+const yamlFiles = readdirSync(rimeSourceDir).filter(f => f.endsWith('.yaml'));
+
+if (yamlFiles.length === 0) {
+  console.log('⚠️  No .yaml files found in', rimeSourceDir);
+} else {
+  for (const file of yamlFiles) {
+    cpSync(join(rimeSourceDir, file), join(rimeTargetDir, file));
+    console.log(`✓ Copied ${file}`);
+  }
+  console.log(`\n✅ Synced ${yamlFiles.length} file(s) to ${rimeTargetDir}`);
+}

@@ -1,2 +1,3 @@
 node scripts/sync-assets.js
 git add src/bootme/assets/autohotkeys/*.ahk
+git add src/bootme/assets/rime/*.yaml
