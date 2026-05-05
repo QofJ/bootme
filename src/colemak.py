@@ -108,3 +108,19 @@ def rime_deploy():
         print(f"部署失败: {e}")
         return False
 
+def run_ahk_script(script_path: str) -> bool:
+    '''
+    启动指定的AHK脚本
+    '''
+    ahk_path = get_ahk_path()
+    if not ahk_path:
+        print("错误：未找到 AutoHotkey，请确认已安装。")
+        return False
+    try:
+        subprocess.Popen([ahk_path, script_path])
+        print(f"已启动AHK脚本: {script_path}")
+        return True
+    except Exception as e:
+        print(f"启动AHK脚本失败: {e}")
+        return False
+
