@@ -1,0 +1,23 @@
+patch:
+  "key_binder/bindings/+":
+    # --- 小写逆映射 (让双拼识别 QWERTY 原位) ---
+    - { accept: f, send: e, when: always }
+    - { accept: p, send: r, when: always }
+    - { accept: b, send: t, when: always }
+    - { accept: j, send: y, when: always }
+    - { accept: l, send: u, when: always }
+    - { accept: u, send: i, when: always }
+    - { accept: y, send: o, when: always }
+    - { accept: "'", send: p, when: always }
+    - { accept: r, send: s, when: always }
+    - { accept: s, send: d, when: always }
+    - { accept: t, send: f, when: always }
+    - { accept: m, send: h, when: always }
+    - { accept: n, send: j, when: always }
+    - { accept: e, send: k, when: always }
+    - { accept: i, send: l, when: always }
+    - { accept: o, send: ";", when: always }
+    - { accept: d, send: v, when: always }
+    - { accept: v, send: b, when: always }
+    - { accept: k, send: n, when: always }
+    - { accept: h, send: m, when: always }
