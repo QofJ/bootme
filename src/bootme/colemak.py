@@ -1,5 +1,7 @@
 import winreg
+import shutil
 from pathlib import Path
+from importlib.resources import files
 import os
 import subprocess
 
@@ -123,4 +125,27 @@ def run_ahk_script(script_path: str) -> bool:
     except Exception as e:
         print(f"启动AHK脚本失败: {e}")
         return False
+    
+    
+def copy_asset(package: str, filename: str, target_dir: str):
+    '''
+    复制资源到指定目录
+    '''
+    source = files(package).joinpath(filename)
+    dest = Path(target_dir) / filename
+    dest.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copy2(source, dest)
 
+def start_colemak_for_qwerty_win():
+    '''
+    在windows上启用colemak的autohotkey映射和rime映射
+    '''
+    autohotkey_file = 'colemak_dh_ansi.ahk'
+    autohotkey_script_dir = get_ahk_script_path()
+    copy_asset('bootme.assets.autohotkeys', autohotkey_file, autohotkey_script_dir)
+    
+    # TODO: rime
+    
+    run_ahk_script(os.path.join(autohotkey_script_dir, autohotkey_file))
+    rime_deploy()
+    
