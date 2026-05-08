@@ -144,8 +144,32 @@ def start_colemak_for_qwerty_win():
     autohotkey_script_dir = get_ahk_script_path()
     copy_asset('bootme.assets.autohotkeys', autohotkey_file, autohotkey_script_dir)
     
-    # TODO: rime
+    rime_file = 'double_pinyin_flypy.custom.yaml'
+    rime_user_path = get_rime_user_path()
+    copy_asset('bootme.assets.rime', rime_file, rime_user_path)
     
     run_ahk_script(os.path.join(autohotkey_script_dir, autohotkey_file))
     rime_deploy()
+    
+
+def start_colemak_for_oyrx_ez_win():
+    '''
+    在windows上启用oyrx_ez的autohotkey映射和rime映射
+    '''
+    rime_source_file = 'double_pinyin_flypy_ergodox_ez.custom.yaml'
+    rime_target_file = 'double_pinyin_flypy.custom.yaml'
+    
+    rime_user_path = get_rime_user_path()
+    copy_asset('bootme.assets.rime', rime_source_file, rime_user_path)
+    
+    # rename to the expected filename
+    source = Path(rime_user_path) / rime_source_file
+    dest = Path(rime_user_path) / rime_target_file
+    if dest.exists():
+        dest.unlink()  # 删除旧文件
+    source.rename(dest)
+    
+    rime_deploy()
+    
+    
     
