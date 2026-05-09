@@ -134,7 +134,7 @@ def copy_asset(package: str, filename: str, target_dir: str):
     source = files(package).joinpath(filename)
     dest = Path(target_dir) / filename
     dest.parent.mkdir(parents=True, exist_ok=True)
-    shutil.copy2(source, dest)
+    shutil.copy2(str(source), dest)
 
 def start_colemak_for_qwerty_win():
     '''
@@ -152,7 +152,7 @@ def start_colemak_for_qwerty_win():
     rime_deploy()
     
 
-def start_colemak_for_oyrx_ez_win():
+def start_colemak_for_oyrx_win():
     '''
     在windows上启用oyrx_ez的autohotkey映射和rime映射
     '''

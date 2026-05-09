@@ -1,42 +1,45 @@
 """CLI entry point for bootme."""
 
-import sys
-import subprocess
-from pathlib import Path
+import typer
+from enum import Enum
+from . import autohotkey
+from bootme.colemak import start_colemak_for_oyrx_win, start_colemak_for_qwerty_win
+
+app = typer.Typer(context_settings={'help_option_names': ['-h', '--help']})
+
+class KeyboardType(str, Enum):
+    qwerty = 'qwerty'
+    oyrx = 'oyrx'
+
+class Platform(str, Enum):
+    win = 'win'
 
 
-def show_help() -> None:
-    """Display help message."""
-    print("""
-Usage: bootme <command>
+@app.command(name="autohotkey")
+def autohotkey_cmd() -> None:
+    """Install AutoHotkey scripts via TUI."""
+    autohotkey.main()
 
-Commands:
-  autohotkey    Install AutoHotkey scripts
-
-Options:
-  -h, --help    Show this help message
-""")
-
-
-def main() -> None:
-    """Main CLI entry point."""
-    args = sys.argv[1:]
-
-    if not args or args[0] in ('-h', '--help'):
-        show_help()
-        sys.exit(0)
-
-    subcommand = args[0]
-
-    if subcommand == 'autohotkey':
-        # Import and run the autohotkey module
-        from . import autohotkey
-        autohotkey.main()
+@app.command()
+def colemak(
+    keyboard: KeyboardType = typer.Argument(KeyboardType.qwerty, help="键盘布局"),
+    platform: Platform = typer.Argument(Platform.win, help="操作系统平台")
+):
+    """使用Colemak键盘字母布局，并相应调整输入"""
+    if keyboard == 'qwerty' and platform == 'win':
+        start_colemak_for_qwerty_win()
+    elif keyboard == 'oyrx' and platform == 'win':
+        start_colemak_for_oyrx_win()
     else:
-        print(f"Unknown command: {subcommand}")
-        show_help()
-        sys.exit(1)
+        typer.secho('不支持的keyboard或platform', fg=typer.colors.YELLOW)
+        raise typer.Exit(code=1)
+
+@app.callback(invoke_without_command=True)
+def main(ctx: typer.Context) -> None:
+    """Bootme - AutoHotkey script installation manager."""
+    if ctx.invoked_subcommand is None:
+        typer.echo(ctx.get_help())
 
 
 if __name__ == "__main__":
-    main()
+    app()
